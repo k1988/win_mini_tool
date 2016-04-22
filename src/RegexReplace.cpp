@@ -44,8 +44,13 @@ int main(int argc, char* argv[])
 	size_t count = fread(buffer, 1, 4096, inFile);
 	if ((count ) > 0)
 	{
-		std::string s(buffer, count);
-		s = boost::regex_replace(s,reg, argv[3]);
+		std::string raws(buffer, count);
+		std::string s = boost::regex_replace(raws, reg, argv[3]);
+        if (s == raws)
+        {
+            std::cout << "未发生版本变化" << std::endl;
+            return 0;
+        }
 		int re = fseek(inFile, 0, SEEK_SET);
 		size_t count_write = fwrite(s.c_str(), 1, s.length(), inFile);
 		if (count_write != count)
