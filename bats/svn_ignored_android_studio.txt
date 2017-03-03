@@ -1,0 +1,8 @@
+.idea
+bin
+target
+build
+captures
+.gradle
+.idea/workspace.xml
+.idea/libraries

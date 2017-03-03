@@ -1,0 +1,7 @@
+*.iml
+*.jar
+*.war
+*.class
+.classpath
+local.properties
+.externalNativeBuild
