@@ -1,6 +1,7 @@
 @echo off
 del /s /q *.ncb
 del /s /q *.obj
+del /s /q *.sdf
 
 del /s /a h *.suo
 del /s *.user
@@ -21,8 +22,6 @@ del /s *.exp
 del /s *.obj
 :del /s */debug/*.htm
 del /s *.dep
-del /s *.manifest
-del /s *.manifest.res
 del /s *.idb
 del /s *.pch
 
