@@ -6,3 +6,4 @@ captures
 .gradle
 .idea/workspace.xml
 .idea/libraries
+*.iml
