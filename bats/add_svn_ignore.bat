@@ -14,4 +14,7 @@ svn propset svn:global-ignores -F "%txt_path%\svn_ignored_java.txt" %cd%
 
 rem android studio
 svn propset svn:ignore -F "%txt_path%\svn_ignored_android_studio.txt" %cd%
+
+rem vc
+svn propset svn:global-ignores -F "%txt_path%\svn_ignored_vc.txt" %cd%
 pause
