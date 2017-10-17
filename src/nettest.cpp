@@ -38,6 +38,41 @@ WORD wVersionRequested;
 	return true;
 }
 
+bool TestWinSockListen(std::string ip, short int port)
+{
+WORD wVersionRequested;
+	WSADATA wsaData;
+	int result;
+
+	wVersionRequested = MAKEWORD(2, 2);
+	result = WSAStartup(wVersionRequested, &wsaData);
+	if (result)
+	{
+        std::cout << "WSAStartup error :" << ::GetLastError() << std::endl;
+		return false;
+	}
+
+    SOCKET socket = ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    sockaddr_in addr;
+     addr.sin_family = AF_INET;
+    addr.sin_port = ::htons(port);
+    addr.sin_addr.S_un.S_addr = ::inet_addr(ip.c_str());
+    if (SOCKET_ERROR == bind(socket, (struct sockaddr *) &addr, sizeof(addr))) 
+    {
+        std::cout << "\nError occurred while binding." << std::endl;
+        return false;
+    }
+    
+    if (SOCKET_ERROR == listen(socket, 0x7fffffff))
+    {
+        closesocket(socket);
+        socket = NULL;
+        std::cout <<  ("\nError occurred while listening.") << std::endl;
+        return false;
+    }
+	return true;
+}
+
 bool TestWininet(std::string url){
     HINTERNET hNet = InternetOpenA(NULL,
                                    INTERNET_OPEN_TYPE_PRECONFIG,
@@ -89,6 +124,10 @@ int main(int argc, char** argv)
 
     if (TestWinSock(ip, port)){
         std::cout << "winsock2 connect successed!" << std::endl;
+    }
+    
+    if (TestWinSockListen(ip, port)){
+        std::cout << "TestWinSockListen connect successed!" << std::endl;
     }
 
     char url[1024]={0};
