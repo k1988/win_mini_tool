@@ -1,0 +1,17 @@
+accelerometer
+agps.sh
+busybox
+compress
+curl
+enable_nox
+gps
+killallrun.sh
+mobile-daemon
+nox
+nox-prop
+nox-vbox-sf
+noxd
+noxscreen
+noxspeedup
+rotation
+shellnox

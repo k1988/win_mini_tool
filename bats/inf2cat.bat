@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Windows Kits\10\bin\x86\Inf2Cat.exe" /OS:XP_x86,XP_x64,Vista_X86,Vista_X64,7_X64,7_X86,8_x86,8_x64,6_3_X86,6_3_X64,10_x86,10_x64  /v /driver:%1

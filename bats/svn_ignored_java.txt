@@ -5,3 +5,5 @@
 .classpath
 local.properties
 .externalNativeBuild
+.idea/workspace.xml
+.idea/libraries
