@@ -13,6 +13,7 @@ AAPT_PATH = join(dirname(realpath(__file__)), 'aapt')
 # package name
 CMD_PACKAGE_INFO = AAPT_PATH + ' dump badging "%s"'
 PACKAGE_INFO_REGEX = re.compile(r"package: name='(.*)' versionCode='(.*)' versionName='(.*)'", re.I)
+LAUNCHER_ACTIVITY_REGEX = re.compile(r"launchable-activity: name='([^']*)'", re.I)
 
 def extract_apk_infos(file_path):
   apk_infos = {}
@@ -24,9 +25,12 @@ def extract_apk_infos(file_path):
       apk_infos['package_name'] = m.group(1)
       apk_infos['version_code'] = int(m.group(2) or 0)
       apk_infos['version_name'] = m.group(3)
+
+    m = LAUNCHER_ACTIVITY_REGEX.search(info)
+    if m:
+      apk_infos['activity_name'] = m.group(1)
   except Exception, e:
     'get package info failed, cmd: %s, error: %s' % (CMD_PACKAGE_INFO % file_path, e)
- 
   return apk_infos
 
 fout = open(join(dirname(realpath(__file__)), 'result.csv'), 'w+')
@@ -36,7 +40,7 @@ def process(path):
         return
     apk_infos = extract_apk_infos(path)
     if apk_infos['package_name']:
-        fout.write('%s,%s\n' % (path, apk_infos['package_name']) )
+        fout.write('%s,%s,%s\n' % (path, apk_infos['package_name'], apk_infos['activity_name']) )
     else:
         fout.write('%s,%s\n' % (path, '解析失败') )
         
