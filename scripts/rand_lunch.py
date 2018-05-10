@@ -3,7 +3,7 @@ import random
 
 # 随机永和大王每天吃什么
 fan = ["卤肉","鸡丝","鸡丁","扣肉"
-,"三杯鸡","鱼香肉丝","咖喱鸡"]
+,"咖喱鸡"]
 r = random.randint(0, len(fan) - 1)
 print ("大王 - " + fan[r-1]).decode("utf-8").encode("gbk")
 
@@ -17,4 +17,19 @@ fan = [
 
 r = random.randint(0, len(fan) - 1)
 print ("二十五块半 - " + fan[r-1]).decode("utf-8").encode("gbk")
+
+# 随机如意菜钣每天吃什么
+# 黑名单："鱼香肉丝"
+fan = ["咸肉饭","麻辣牛肉饭","鸡汁杏鲍菇",
+"香辣水煮鱼",
+"现焗回锅肉",
+"酸菜鱼",
+"老坛酸菜肉片",
+"梅干菜扣肉",
+"咖喱牛肉",
+"宫保鸡丁",
+"茶树菇老鸭"]
+r = random.randint(0, len(fan) - 1)
+print ("如意菜钣 - " + fan[r-1]).decode("utf-8").encode("gbk")
+
 a = raw_input()
