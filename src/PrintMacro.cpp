@@ -286,7 +286,7 @@ const MACRO_T g_stdc[] =
 const MACRO_T g_vc[] =
 {
     {"[Visual C++]", ""},
-
+	
 #ifdef _ATL_VER
     PT_MAKE_STR(_ATL_VER),
 #endif
@@ -317,6 +317,15 @@ const MACRO_T g_vc[] =
 
 #ifdef _CPPUNWIND
     PT_MAKE_STR(_CPPUNWIND),
+#endif
+
+#ifdef _MSVC_LANG
+    PT_MAKE_STR(_MSVC_LANG),
+#endif
+
+// vs2017
+#ifdef _HAS_CXX17
+    PT_MAKE_STR(_HAS_CXX17),
 #endif
 
 #ifdef _DEBUG

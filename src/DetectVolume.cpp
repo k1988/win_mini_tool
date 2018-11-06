@@ -1,14 +1,16 @@
-#define _WIN32_WINNT 0x0500
-#define WINVER 0x0500
+// #define _WIN32_WINNT 0x0500
+// #define WINVER 0x0500
 
 #include <windows.h>
 #include <stdio.h>
 #include <conio.h>
 #include <winioctl.h>
 #include <TChar.h>
+#include <FileAPI.h>
 
 #define IOCTL_STORAGE_QUERY_PROPERTY   CTL_CODE(IOCTL_STORAGE_BASE, 0x0500, METHOD_BUFFERED, FILE_ANY_ACCESS)
 
+#ifndef STORAGE_FAILURE_PREDICTION_CONFIG_V1
 typedef enum _STORAGE_PROPERTY_ID {
 	StorageDeviceProperty = 0,
 	StorageAdapterProperty,
@@ -44,6 +46,7 @@ typedef struct _STORAGE_DEVICE_DESCRIPTOR {
 	ULONG RawPropertiesLength;
 	UCHAR RawDeviceProperties[1];
 } STORAGE_DEVICE_DESCRIPTOR, *PSTORAGE_DEVICE_DESCRIPTOR;
+#endif
 
 static CHAR BufType[0x7f][128] = {"Î´ÖªÀàÐÍ","SCSI","Atapi","Ata","1394","Ssa","Fibre","Usb","RAID","iSCSI","SATA","SAS","",};
 
