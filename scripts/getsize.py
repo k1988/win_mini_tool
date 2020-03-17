@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #coding:utf8
 import sys,os,urllib2,re
 
