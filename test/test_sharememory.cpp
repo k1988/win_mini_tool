@@ -8,7 +8,7 @@
 
 #pragma comment(lib, "Advapi32.lib")
 
-# ref: https://blog.csdn.net/huanglong8/article/details/71105050
+//# ref: https://blog.csdn.net/huanglong8/article/details/71105050
 const char *sharename = "Global\\mysharedmemory";
 const char *sharessdl = "D:P(A;OICI;GA;;;SY)(A;OICI;GA;;;BA)(A;OICI;GR;;;IU)";
 char szMsg[] = "Message from first process";

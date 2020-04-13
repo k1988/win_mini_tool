@@ -1,3 +1,3 @@
 git stash save
 git pull
-git stash pull
+git stash pop
