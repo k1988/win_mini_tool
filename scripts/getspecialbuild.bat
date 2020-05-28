@@ -1,0 +1,1 @@
+@winapi.GetFileVersionInfo.py %1% SpecialBuild
