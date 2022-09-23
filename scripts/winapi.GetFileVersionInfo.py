@@ -1,6 +1,6 @@
 #!python3
 import sys
-import win32api
+import win32api # pip install pywin32
 import os
 
 def getFileVersion(file_name):
