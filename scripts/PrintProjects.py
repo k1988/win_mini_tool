@@ -13,28 +13,34 @@ def usage():
 
 
 def print_projects(level: int, folder: str):
-    root_depth = len(folder.split(os.path.sep))
-    for root, dirs, files in os.walk(folder):
-        folder_depth = len(root.split(os.path.sep))
-        if folder_depth - root_depth <= level:
-            #print("%s %d dirs, %d files" % (root, len(dirs), len(files)))
+    dirs = []
+    for item in os.listdir(folder):
+        full_path = os.path.join(folder, item)
 
-            if ".git" in dirs:
-                # git projects
-                cmd = "git --git-dir=\"%s\" remote -v" % (os.path.join(root, ".git"))
+        if os.path.isdir(full_path):
+            dirs.append(os.path.join(folder, item))
+            if item == ".git":
+                 # git projects
+                cmd = "git --git-dir=\"%s\" remote -v" % (full_path)
                 try:
                     result = subprocess.check_output(cmd, shell=True)
-                    print("git: %s\n%s" % (root, result.decode()))
-                except:
+                    print("git: %s\n%s" % (folder, result.decode()))
+                except Exception as e:
+                    print(e)
                     pass
-            if ".svn" in dirs:
-                # git projects
-                cmd = "svn info \"%s\"" % (os.path.join(root))
+            elif item == ".svn":
+                # svn projects
+                cmd = "svn info \"%s\"" % (folder)
                 try:
                     result = subprocess.check_output(cmd, shell=True)
-                    print("git: %s\n%s" % (root, result.decode()))
-                except:
+                    print("svn: %s\n%s" % (folder, result.decode("gbk")))
+                except Exception as e:
+                    print(e)
                     pass
+            else:
+                # recursive
+                if level >= 1:
+                    print_projects(level - 1, full_path)
     pass
 
 
