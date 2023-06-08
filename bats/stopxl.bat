@@ -1,2 +1,4 @@
-:停止迅雷下载服务
+@rem 停止迅雷下载服务
 net stop XLServicePlatform
+net stop xlguard
+net stop xlwfp
