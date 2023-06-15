@@ -4,6 +4,7 @@
 #define PT_MAKE_STR(x)    { #x, PT_MAKE_STR_ESC(x) }
 #define PT_MAKE_STR_ESC(x)    #x
 
+// msvc ref：https://learn.microsoft.com/zh-cn/cpp/preprocessor/predefined-macros?view=msvc-170
 
 typedef struct tagMACRO_T
 {
@@ -18,6 +19,8 @@ const MACRO_T g_compilers[] =
 
 #ifdef _MSC_VER            /* Visual C++ */
     PT_MAKE_STR( _MSC_VER ),
+	
+	PT_MAKE_STR( _USING_V110_SDK71_ ),
 #endif
 
 #ifdef __BORLANDC__
