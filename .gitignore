@@ -30,3 +30,4 @@ BuildLog.htm
 Backup/
 Backup1/
 .vscode 
+*.dll
