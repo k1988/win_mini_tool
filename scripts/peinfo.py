@@ -4,6 +4,7 @@ import string
 import hashlib
 import pefile
 import datetime
+import win32file
 
 
 def gethash(file):
@@ -94,6 +95,13 @@ def print_hash(path: str):
     print('SHA-256: ', file_sha256)
     pass
 
+def print_winprops(path: str):
+    print_split_line("windows属性")
+    attributes = win32file.GetFileAttributes(path)
+    print('attributes: ', attributes)
+    print('FileTime: ', win32file.GetFileTime(path))
+    print('SHA-256: ', file_sha256)
+    pass
 
 def print_pe(path: str):
     try:
