@@ -99,6 +99,14 @@ void main()
 			printf("owner: %s\n", info);
 		}
 		
+		POINT cursorPos;
+        GetCursorPos(&cursorPos);
+		HWND cursorWnd = ::WindowFromPoint(cursorPos);
+		if (cursorWnd)
+		{
+			DumpWindow(cursorWnd, info);
+			printf("window under cursor: %s\n", info);
+		}
 
 		//DumpWindow(focus, info);
 		//printf("focus: %s\n", info);

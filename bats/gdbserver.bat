@@ -14,10 +14,13 @@ exit /b
 
 ::-----Normal Batch Starts Here---------------------
 
+
 set cur_folder=%~dp0%
 
-tasklist | FindStr KKDRMain.exe
+start cmd.exe /c "%cur_folder%\KKDrMain.exe"
+
 pause
+tasklist | FindStr KKDRMain.exe
 set /p pid=请输入上面的 KKDRMain.exe 的进程id: 
-%cur_folder%\gdbserver --once --attach 0.0.0.0:9876 %pid%
+"%cur_folder%\gdbserver" --once --attach 0.0.0.0:9876 %pid%
 pause

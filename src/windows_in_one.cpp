@@ -110,16 +110,32 @@ void main(int argc, char *argv[])
             return;
         }
     }
+	
+	char choice = 0;
+	std::cout << "need continue monitor? Y/N";
+	std::cin >> choice;
+	bool stayAlive = false;
+	if (choice == 'Y' || choice == 'y' )
+	{
+		stayAlive = true;
+	}
 
-    POINT mousePos = {0};
-    ::GetCursorPos(&mousePos);
-    auto monitor = MonitorFromPoint(mousePos, 0);
-    MONITORINFO monitorInfo;
-    memset(&monitorInfo, 0, sizeof(monitorInfo));
-    monitorInfo.cbSize = sizeof(monitorInfo);
-    GetMonitorInfo(monitor, &monitorInfo);
-    printf("current cursor pos is:%d,%d\n", mousePos.x, mousePos.y);
-    printf("current monitor pos is:%d,%d,%d,%d\n", monitorInfo.rcMonitor.left, monitorInfo.rcMonitor.top, monitorInfo.rcMonitor.right, monitorInfo.rcMonitor.bottom);
+	// 保存启动时鼠标所在显示器的参数
+	POINT mousePos = {0};
+	::GetCursorPos(&mousePos);
+	auto monitor = MonitorFromPoint(mousePos, 0);
+	MONITORINFO monitorInfo;
+	memset(&monitorInfo, 0, sizeof(monitorInfo));
+	monitorInfo.cbSize = sizeof(monitorInfo);
+	GetMonitorInfo(monitor, &monitorInfo);
+	printf("current cursor pos is:%d,%d\n", mousePos.x, mousePos.y);
+	printf("current monitor pos is:%d,%d,%d,%d\n", monitorInfo.rcMonitor.left, monitorInfo.rcMonitor.top, monitorInfo.rcMonitor.right, monitorInfo.rcMonitor.bottom);
 
-    ::EnumWindows(EnumWindowProc, (LPARAM)&monitorInfo);
+
+	do {		
+		::EnumWindows(EnumWindowProc, (LPARAM)&monitorInfo);
+		if (stayAlive){
+			::Sleep(5000);
+		}
+	} while (stayAlive);
 }
