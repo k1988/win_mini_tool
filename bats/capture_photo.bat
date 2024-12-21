@@ -3,10 +3,10 @@
 :: 设置图片保存目录
 set SAVE_PATH=%cd%
 
-@if {"%1%"}=={""} (
+@if not {"%1%"}=={""} (
 echo 未使用命令行传递保存目录,使用当前目录
 :: 设置图片保存目录
-set SAVE_PATH=%~dp0%
+set SAVE_PATH=%1%
 ) 
 
 if not exist "%SAVE_PATH%" mkdir "%SAVE_PATH%"
